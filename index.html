@@ -1,32 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Roblox Unban Countdown</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: white;
       text-align: center;
-      padding: 50px;
+      padding: 40px;
+      transition: background 0.3s, color 0.3s;
+      background: #121212;
+      color: white;
     }
+
+    .light {
+      background: #f4f4f4;
+      color: black;
+    }
+
     h1 {
       font-size: 2em;
-      margin-bottom: 30px;
     }
+
     #countdown {
       font-size: 2.5em;
-      font-weight: bold;
+      margin-bottom: 20px;
       color: #00ffcc;
+    }
+
+    button {
+      margin: 10px;
+      padding: 12px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1>Time Until Roblox Unban</h1>
+  <h1>🕒 Time Until Roblox Unban</h1>
   <div id="countdown">Loading...</div>
 
+  <button onclick="toggleTheme()">🌓 Toggle Theme</button>
+  <button onclick="toggleMusic()">🎵 Play Music</button>
+
+  <audio id="bgMusic" loop>
+    <source src="https://files.catbox.moe/o4h7wv.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
+    // Countdown
     const targetDate = new Date("2025-11-19T08:36:00-03:00").getTime();
 
     function updateCountdown() {
@@ -49,6 +73,24 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // Theme toggle
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+
+    // Music toggle
+    const music = document.getElementById('bgMusic');
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+      } else {
+        music.play();
+      }
+      isPlaying = !isPlaying;
+    }
   </script>
 </body>
 </html>
